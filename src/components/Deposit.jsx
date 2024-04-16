@@ -1,10 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
 import Card from "./Card";
+import Layout from "../layout/Layout";
+import {AppContext} from "../utils/Context";
 
-function Deposit({ handleDeposit }) {
+function Deposit() {
   const [deposit, setDeposit] = React.useState(0);
+  const {handleDeposit} = useContext(AppContext);
+
   return (
-    <>
+    <Layout>
       <h1>Deposit</h1>
       <Card
         bgcolor="success"
@@ -29,7 +33,7 @@ function Deposit({ handleDeposit }) {
           </>
         }
       />
-    </>
+    </Layout>
   );
 }
 

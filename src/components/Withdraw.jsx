@@ -1,10 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
 import Card from "./Card";
+import Layout from "../layout/Layout";
+import {AppContext} from "../utils/Context";
 
-function Withdraw({ handleWithdraw }) {
+function Withdraw() {
   const [withdraw, setWithdraw] = React.useState(0);
+  const {handleWithdraw} = useContext(AppContext);
+
   return (
-    <>
+    <Layout>
       <h1>Withdraw</h1>
       <Card
         bgcolor="danger"
@@ -33,7 +37,7 @@ function Withdraw({ handleWithdraw }) {
           </>
         }
       />
-    </>
+    </Layout>
   );
 }
 
