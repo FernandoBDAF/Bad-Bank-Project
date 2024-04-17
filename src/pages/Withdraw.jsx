@@ -32,30 +32,31 @@ export default function Withdraw() {
           <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
             <h1 className="mb-3">Withdraw</h1>
             <Card
-        bgcolor="danger"
-        header="Withdraw"
-        status=""
-        body={
-          <>
-            Amount
-            <br />
-            <input
-              type="input"
-              className="form-control"
-              id="withdraw"
-              placeholder="Enter withdraw amount"
-              value={withdraw}
-              onChange={onWithdrawChange}
-            />
-            <br />
-            <button
-              type="submit"
-              className="btn btn-light"
-              onClick={onWithdrawClick}
-            >
-              Withdraw
-            </button>
-          </>
+              bgcolor="danger"
+              header="Withdraw"
+              status=""
+              body={
+                <>
+                  <label htmlFor="withdraw" className="form-label">
+                    Amount
+                  </label>
+                  <input
+                    type="input"
+                    className="form-control"
+                    id="withdraw"
+                    placeholder="Enter withdraw amount"
+                    value={withdraw}
+                    onChange={onWithdrawChange}
+                  />
+                  <br />
+                  <button
+                    type="submit"
+                    className="btn btn-light"
+                    onClick={onWithdrawClick}
+                  >
+                    Withdraw
+                  </button>
+                </>
         }
       />
           </div>

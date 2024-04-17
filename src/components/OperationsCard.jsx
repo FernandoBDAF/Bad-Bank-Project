@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { AppContext } from '../utils/Context';
 
-function FinancialOperations({ initialBalance }) {
-  const [balance, setBalance] = useState(initialBalance);
+function FinancialOperations() {
+  const {balance} = useContext(AppContext);
   const [loanAmount, setLoanAmount] = useState('');
   const [showLoanInput, setShowLoanInput] = useState(false);
   const [billAmount, setBillAmount] = useState('');
@@ -13,6 +14,7 @@ function FinancialOperations({ initialBalance }) {
   const [showTransferInput, setShowTransferInput] = useState(false);
   const [investAmount, setInvestAmount] = useState('');
   const [showInvestInput, setShowInvestInput] = useState(false);
+  const [showCryptoInput, setShowCryptoInput] = useState(false);
 
   const toggleInput = (setter) => () => {
     setter(prev => !prev);
@@ -20,7 +22,7 @@ function FinancialOperations({ initialBalance }) {
 
   const handleLoanApply = () => {
     if (loanAmount && !isNaN(loanAmount)) {
-      setBalance(prevBalance => prevBalance + parseFloat(loanAmount));
+    //   setBalance(prevBalance => prevBalance + parseFloat(loanAmount));
       setLoanAmount('');
       setShowLoanInput(false);
     }
@@ -28,7 +30,7 @@ function FinancialOperations({ initialBalance }) {
 
   const handleBillPay = () => {
     if (billAmount && !isNaN(billAmount)) {
-      setBalance(prevBalance => prevBalance - parseFloat(billAmount));
+    //   setBalance(prevBalance => prevBalance - parseFloat(billAmount));
       setBillAmount('');
       setBillName('');
       setShowBillInput(false);
@@ -37,7 +39,7 @@ function FinancialOperations({ initialBalance }) {
 
   const handleTransfer = () => {
     if (transferAmount && !isNaN(transferAmount)) {
-      setBalance(prevBalance => prevBalance - parseFloat(transferAmount));
+    //   setBalance(prevBalance => prevBalance - parseFloat(transferAmount));
       setTransferAmount('');
       setRecipientEmail('');
       setShowTransferInput(false);
@@ -46,7 +48,7 @@ function FinancialOperations({ initialBalance }) {
 
   const handleInvestment = () => {
     if (investAmount && !isNaN(investAmount)) {
-      setBalance(prevBalance => prevBalance - parseFloat(investAmount));
+    //   setBalance(prevBalance => prevBalance - parseFloat(investAmount));
       setInvestAmount('');
       setShowInvestInput(false);
     }
@@ -54,7 +56,7 @@ function FinancialOperations({ initialBalance }) {
 
   return (
     <div className="container my-3">
-      <h3>Balance: ${balance.toFixed(2)}</h3>
+      <h3>USD: ${balance.toFixed(2)}</h3>
       <div className="d-flex flex-wrap gap-2">
         <button className="btn btn-primary" onClick={toggleInput(setShowLoanInput)}>Get a Loan</button>
         {showLoanInput && (
@@ -138,6 +140,41 @@ function FinancialOperations({ initialBalance }) {
               onChange={e => setInvestAmount(e.target.value)}
             />
             <button className="btn btn-success" onClick={handleInvestment}>Invest</button>
+          </>
+        )}
+        <button className="btn btn-secondary" onClick={toggleInput(setShowBillInput)}>Trade Crypto</button>
+        {showBillInput && (
+          <>
+            <input
+              type="number"
+              className="form-control"
+              placeholder="Enter the value of the payment"
+              value={billAmount}
+              onChange={e => setBillAmount(e.target.value)}
+            />
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Enter the name of the bill"
+              value={billName}
+              onChange={e => setBillName(e.target.value)}
+            />
+            <select
+              className="form-select"
+              value={billType}
+              onChange={e => setBillType(e.target.value)}
+            >
+              <option value="Electricity">Electricity</option>
+              <option value="Water">Water</option>
+              <option value="Internet">Internet</option>
+              <option value="Phone">Phone</option>
+              <option value="Rent">Rent</option>
+              <option value="Mortgage">Mortgage</option>
+              <option value="Car">Car</option>
+              <option value="Insurance">Insurance</option>
+              <option value="Other">Other</option>
+            </select>
+            <button className="btn btn-success" onClick={handleBillPay}>Pay</button>
           </>
         )}
       </div>

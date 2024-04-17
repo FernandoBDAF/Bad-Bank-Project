@@ -34,6 +34,9 @@ export default function NavBar () {
                     <Link className="nav-link" to="/withdraw">Withdraw</Link>
                   </li>
                   <li className="nav-item">
+                    <Link className="nav-link" to="/trade-crypto">Trade Crypto</Link>
+                  </li>
+                  <li className="nav-item">
                     <Link className="nav-link" to="/loans">Loans</Link>
                   </li>
                   <li className="nav-item">
