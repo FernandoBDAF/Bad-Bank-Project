@@ -1,9 +1,8 @@
 import './App.css';
-import Body from './components/Body';
-import Layout from './layout/Layout';
-import CreateAccount from './components/CreateAccount';
-import React, { useState, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AppContext } from './utils/Context';
+import { Navigate } from 'react-router-dom';
+import { check } from 'prettier';
 
 
 function App() {
@@ -13,6 +12,7 @@ function App() {
     balance,
     loginMessage,
     transactions,
+    checkLogin,
   } = useContext(AppContext);
 
     console.log("Users", users);
@@ -22,12 +22,12 @@ function App() {
     console.log("Login Message", loginMessage);
     console.log("Transactions", transactions);
 
-  return (
-    <Layout>
-      {authenticated && <Body />}
-      {!authenticated && <CreateAccount />}
-    </Layout>
-    );
+  if (!authenticated) {
+    return checkLogin();
+  }
+
+  return <Navigate to="/home" />;
+  
 
 }
 

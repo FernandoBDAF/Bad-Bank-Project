@@ -15,12 +15,16 @@ export default function NavBar () {
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
-                <li className="nav-item">
-                  <Link className="nav-link" to="/CreateAccount">Create Account</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/log-in">Login</Link>
-                </li>
+                {!authenticated && 
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/create-account">Create Account</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/log-in">Login</Link>
+                  </li>
+                </>
+                }
                 {authenticated &&
                 <>
                   <li className="nav-item">
@@ -30,19 +34,26 @@ export default function NavBar () {
                     <Link className="nav-link" to="/withdraw">Withdraw</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to="/balance">Balance</Link>
+                    <Link className="nav-link" to="/loans">Loans</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to="#/alldata/">AllData</Link>
+                    <Link className="nav-link" to="/payments">Payments</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to="#/alldata/">Pay your bills</Link>
+                    <Link className="nav-link" to="/transfer-money">Transfer Money</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to="#/alldata/">Create Random Numbers</Link>
+                    <Link className="nav-link" to="/investments">Investments</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/transactions">Transactions</Link>
                   </li>
                 </>
                 }
+                <li>.....................................</li>
+                <li>
+                  <Link className="nav-link" to="#/alldata/">Create Random Numbers</Link>
+                </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="#/alldata/">About this project</Link>
                 </li>

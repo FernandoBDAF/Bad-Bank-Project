@@ -2,14 +2,21 @@ import React, {useContext} from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AppProvider } from './utils/Context';
-import CreateAccount from './components/CreateAccount';
-import Login from './components/Login';
-import Deposit from './components/Deposit';
-import Withdraw from './components/Withdraw';
+import CreateAccount from './pages/CreateAccount';
+import Login from './pages/Login';
+import Deposit from './pages/Deposit';
+import Withdraw from './pages/Withdraw';
+import Home from './pages/Home';
+import Transactions from './pages/Transactions';
+import NavBar from './layout/navbar/NavBar';
+import Footer from './layout/footer/Footer';
+import Loans from './pages/Loans';
+import Payments from './pages/Payments';
+import TransferMoney from './pages/TransferMoney';
+import Investments from './pages/Investments';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -17,21 +24,25 @@ root.render(
     <React.StrictMode>
       <AppProvider>
         <Router>
+        <div className="d-flex flex-column min-vh-100"> {/* Flex container with Bootstrap */}
+        <NavBar />
+        <div className="flex-grow-1">
           <Routes>
-            <Route path="/" element={<App />} />
-            <Route path="/CreateAccount" element={<CreateAccount />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/create-account" element={<CreateAccount />} />
             <Route path="/log-in" element={<Login />} />
             <Route path="/deposit" element={<Deposit />} />
             <Route path="/withdraw" element={<Withdraw />} />
-            {/* <Route path="/balance" element={<Balance />} /> */}
+            <Route path="/loans" element={<Loans />} />
+            <Route path="/payments" element={<Payments />} />
+            <Route path="/transfer-money" element={<TransferMoney />} />
+            <Route path="/investments" element={<Investments />} />
+            <Route path="/transactions" element={<Transactions />} />
           </Routes>
+        </div>
+        <Footer />
+      </div>
         </Router>
-            {/* <Route path="/CreateAccount/" component={CreateAccount} /> */}
-            {/* <Route path="/login/" component={Login} /> */}
-            {/* <Route path="/components/" component={Deposit} /> */}
-            {/* <Route path="/components/" component={Withdraw} /> */}
-            {/* <Route path="/balance/" component={Balance} /> */}
-            {/* <Route path="/alldata/" component={AllData} /> */}
       </AppProvider>
     </React.StrictMode>
 );
