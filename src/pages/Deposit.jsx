@@ -34,10 +34,9 @@ export default function Deposit() {
     <div className="container mt-5">
       <div className="row flex-wrap align-items-center justify-content-between">
         <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
-          <h1 className="mb-3">Deposit - {balance}</h1>
           <Card
             bgcolor="success"
-            header="Deposit"
+            header="DEPOSIT"
             status=""
             text="Deposit money into your account"
             body={

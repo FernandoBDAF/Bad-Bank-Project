@@ -34,31 +34,25 @@ export default function NavBar () {
                     <Link className="nav-link" to="/withdraw">Withdraw</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to="/trade-crypto">Trade Crypto</Link>
-                  </li>
-                  <li className="nav-item">
                     <Link className="nav-link" to="/loans">Loans</Link>
                   </li>
                   <li className="nav-item">
                     <Link className="nav-link" to="/payments">Payments</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to="/transfer-money">Transfer Money</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/investments">Investments</Link>
+                    <Link className="nav-link" to="/transfer-money">Transfer</Link>
                   </li>
                   <li className="nav-item">
                     <Link className="nav-link" to="/transactions">Transactions</Link>
                   </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/trade-crypto">Crypto</Link>
+                  </li>
                 </>
                 }
-                <li>.....................................</li>
+                <li>..............</li>
                 <li>
-                  <Link className="nav-link" to="#/alldata/">Create Random Numbers</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="#/alldata/">About this project</Link>
+                  <Link className="nav-link" to="#/alldata/">Random Numbers</Link>
                 </li>
               </ul>
             </div>

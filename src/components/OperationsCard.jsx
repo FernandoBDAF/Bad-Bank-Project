@@ -56,7 +56,7 @@ function FinancialOperations() {
 
   return (
     <div className="container my-3">
-      <h3>USD: ${balance.toFixed(2)}</h3>
+      <h3>BALANCE: ${balance.toFixed(2)}</h3>
       <div className="d-flex flex-wrap gap-2">
         <button className="btn btn-primary" onClick={toggleInput(setShowLoanInput)}>Get a Loan</button>
         {showLoanInput && (

@@ -27,43 +27,47 @@ export default function Withdraw() {
   }
 
   return (
-      <div className="container mt-5">
-        <div className="row flex-wrap align-items-center justify-content-between">
-          <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
-            <h1 className="mb-3">Withdraw</h1>
-            <Card
-              bgcolor="danger"
-              header="Withdraw"
-              status=""
-              body={
-                <>
-                  <label htmlFor="withdraw" className="form-label">
+    <div className="container mt-5">
+      <div className="row flex-wrap align-items-center justify-content-between">
+        <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
+          <Card
+            bgcolor="danger"
+            header="WITHDRAW"
+            status=""
+            text="Withdraw money from your account"
+            body={
+              <>
+                <div className="mb-3">
+                  <label htmlFor="deposit" className="form-label">
                     Amount
                   </label>
+
                   <input
                     type="input"
                     className="form-control"
-                    id="withdraw"
-                    placeholder="Enter withdraw amount"
+                    id="deposit"
+                    placeholder="Enter deposit amount"
                     value={withdraw}
                     onChange={onWithdrawChange}
                   />
-                  <br />
-                  <button
-                    type="submit"
-                    className="btn btn-light"
-                    onClick={onWithdrawClick}
-                  >
-                    Withdraw
-                  </button>
-                </>
-        }
-      />
-          </div>
-          <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
-            <FinancialOperations initialBalance={balance} />
-          </div>
+
+                </div>
+
+                <button
+                  type="submit"
+                  className="btn btn-light"
+                  onClick={onWithdrawClick}
+                >
+                  Withdraw
+                </button>
+              </>
+            }
+          />
+        </div>
+        <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
+          <FinancialOperations />
         </div>
       </div>
+    </div>
   );
 }

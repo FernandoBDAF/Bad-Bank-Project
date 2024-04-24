@@ -14,68 +14,47 @@ export default function Loans() {
     <div className="container mt-5">
       <div className="row flex-wrap align-items-center justify-content-between">
         <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
-          <h1 className="mb-3">{balance}</h1>
           <Card
             bgcolor="info"
-            header="Loans"
-            status=""
-            text="Do your payments now"
+            header="PAY BILLS"
             body={
               <>
-                <div className="row">
-                  <div className="col-md-12">
-                    <h5>Daily Limit: $1000</h5>
-                    <h5>Available limit: $0</h5>
-                    <label htmlFor="loanAmount" className="form-label">
-                        Change your limit
-                    </label>
-                    <input
-                        type="number"
-                        className="form-control"
-                        id="limitAmount"
-                        placeholder="Enter your new limit"
-                        value={amount}
-                        onChange={e => setAmount(e.target.value)}
-                    />
-                    <button className="btn btn-primary mb-3">
-                      Confirm Change
-                    </button>
+                <div className="d-flex flex-column gap-4">
+                  <div className="col-md-12 d-flex">
+                    <div className="d-flex flex-column gap-4">
+                        <div>
+                            <h6>Daily Limit: $1000</h6>
+                            <h6>Available limit: $0</h6>
+                        </div>
+                            
+                        <div>
+                            <label htmlFor="loanAmount" className="form-label">
+                                Change your payment limit
+                            </label>
+                            <input
+                                type="number"
+                                className="form-control"
+                                id="limitAmount"
+                                placeholder="New value"
+                                value={amount}
+                                onChange={e => setAmount(e.target.value)}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="align-self-end">
+                        <button
+                        type="submit"
+                        className="btn btn-primary"
+                        onClick={takeLoan}
+                        >
+                            Confirm
+                        </button>
+                    </div>
                   </div>
                 </div>
 
-                <div className="row">
-                  <div className="col-md-6 mb-3">
-                    <label htmlFor="loanAmount" className="form-label">
-                      Payment Code
-                    </label>
-                    {/* input size should be 100% of the container */}
-                    <input
-                      type="number"
-                      className="form-control"
-                      id="loanAmount"
-                      placeholder="Enter your 16-digits code"
-                      value={""}
-                      onChange={takeLoan}
-                    />
-                  </div>
-                </div>
-
-                <div className="row">
-                  <div className="col-md-6 mb-3">
-                    <label htmlFor="loanAmount" className="form-label">
-                      Value
-                    </label>
-                    <input
-                      type="number"
-                      className="form-control"
-                      id="loanAmount"
-                      placeholder="Enter amount"
-                      value={0}
-                      onChange={takeLoan}
-                    />
-                  </div>
-
-                  <div className="col-md-6 mb-3">
+                  {/* <div className="col-md-6 mb-3">
                     <label htmlFor="paymentTerm" className="form-label">
                       Bill Type
                     </label>
@@ -88,16 +67,7 @@ export default function Loans() {
                         <option value="6">Insurance</option>
                         <option value="7">Other</option>
                     </select>
-                  </div>
-                </div>
-
-                <button
-                  type="submit"
-                  className="btn btn-success"
-                  onClick={takeLoan}
-                >
-                  Confirm Payment
-                </button>
+                  </div> */}
               </>
             }
           />

@@ -14,65 +14,81 @@ export default function Loans() {
     <div className="container mt-5">
       <div className="row flex-wrap align-items-center justify-content-between">
         <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
-          <h1 className="mb-3">{balance}</h1>
           <Card
             bgcolor="info"
-            header="Loans"
-            status=""
-            text="Unblock your limit"
+            header="LOANS"
             body={
               <>
-                <div className="row">
-                  <div className="col-md-12">
-                    <h5>Current limit: $1000</h5>
-                    <h5>Available limit: $0</h5>
-                    <button className="btn btn-primary mb-3">
-                      Unlock Loans
-                    </button>
+                <div className="row mb-3">
+                  <div className="col-md-12 d-flex gap-3">
+                    <div>
+                        <h6>Locked limit: $1000</h6>
+                        <h6>Available limit: $0</h6>
+                    </div>
+                    <div className="align-self-end">
+                        <button
+                        type="submit"
+                        className="btn btn-primary"
+                        onClick={takeLoan}
+                        >
+                            Unlock
+                        </button>
+                    </div>
                   </div>
                 </div>
 
                 <div className="row">
-                  <div className="col-md-6 mb-3">
-                    <label htmlFor="loanAmount" className="form-label">
-                      Amount
-                    </label>
-                    <input
-                      type="number"
-                      className="form-control"
-                      id="loanAmount"
-                      placeholder="Enter amount"
-                      value={0}
-                      onChange={takeLoan}
-                    />
-                  </div>
+                    <div className="d-flex gap-2">
+                        <div className="col-md-6 mb-3">
+                            <label htmlFor="loanAmount" className="form-label">
+                            Amount
+                            </label>
+                            <input
+                            type="number"
+                            className="form-control"
+                            id="loanAmount"
+                            placeholder="Enter amount"
+                            value={0}
+                            onChange={takeLoan}
+                            />
+                        </div>
 
-                  <div className="col-md-6 mb-3">
-                    <label htmlFor="paymentTerm" className="form-label">
-                      Payment Term
-                    </label>
-                    <select className="form-select" id="paymentTerm">
-                      <option value="1">1 month</option>
-                      <option value="2">2 months</option>
-                      <option value="3">3 months</option>
-                      <option value="6">6 months</option>
-                      <option value="12">12 months</option>
-                    </select>
-                  </div>
+                        <div className="col-md-6 mb-3">
+                            <label htmlFor="paymentTerm" className="form-label">
+                            Payment Term
+                            </label>
+                            <select className="form-select" id="paymentTerm">
+                            <option value="1">1 month</option>
+                            <option value="2">2 months</option>
+                            <option value="3">3 months</option>
+                            <option value="6">6 months</option>
+                            <option value="12">12 months</option>
+                            </select>
+                        </div>
+                    </div>
+                  
+                  
                 </div>
 
-                <div className="mb-3">
-                  <label className="form-label">Interest Rate</label>
-                  <p>Variable rates apply</p>
-                </div>
 
-                <button
-                  type="submit"
-                  className="btn btn-success"
-                  onClick={takeLoan}
-                >
-                  Confirm Loan
-                </button>
+                <div className="d-flex gap-4">
+                    <div className="mb-3">
+                        <h6>Interest rate</h6>
+                        <p>2% by month</p>
+                    </div>
+                    
+                    <div className="align-self-start">
+                        <button
+                        type="submit"
+                        className="btn btn-success"
+                        onClick={takeLoan}
+                        >
+                        Confirm Loan
+                        </button>
+                    </div>
+                    
+                </div>
+                
               </>
             }
           />
