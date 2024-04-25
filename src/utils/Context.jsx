@@ -4,13 +4,23 @@ import { Navigate } from "react-router-dom";
 export const AppContext = createContext(null);
 
 export const AppProvider = ({ children }) => {
-    const [id, setId] = useState(1);
+  const [id, setId] = useState(1);
   const [users, setUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
   const [authenticated, setAuthenticated] = useState(true);
   const [balance, setBalance] = useState(0);
+  const [balanceBTC, setBalanceBTC] = useState(0);
+  const [balanceETH, setBalanceETH] = useState(0);
+  const [balanceUSDC, setBalanceUSDC] = useState(0);
   const [loginMessage, setLoginMessage] = useState("");
   const [transactions, setTransactions] = useState([]);
+  const [loanLocked, setLoanLocked] = useState(1000);
+  const [loanAvailable, setLoanAvailable] = useState(0);
+  const [loanDebit, setLoanDebit] = useState(0);
+  const [paymentLimit, setPaymentLimit] = useState(1000);
+  const [payments, setPayments] = useState([]);
+  const [transferLimit, setTransferLimit] = useState(1000);
+  const [transfers, setTransfers] = useState([]);
 
   const handleDeposit = (amount) => {
     setBalance(balance + parseFloat(amount));
@@ -18,7 +28,6 @@ export const AppProvider = ({ children }) => {
       ...transactions,
       { type: "Deposit", amount: amount, id: transactions.length + 1, timestamp: new Date()},
     ]);
-    console.log(transactions);
   };
 
   const handleWithdraw = (amount) => {
@@ -27,7 +36,6 @@ export const AppProvider = ({ children }) => {
       ...transactions,
       { type: "Withdraw", amount: amount, id: transactions.length + 1, timestamp: new Date()},
     ]);
-    console.log(transactions);
   };
 
   const validateNumber = (number) => {
@@ -61,6 +69,40 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  const handleUnlockLoan = () => {
+    if (loanLocked > 0) {
+      setLoanAvailable(loanLocked);
+      setLoanLocked(0);
+      alert("Loan unlocked!");
+    }
+  };
+
+  const increasePaymentLimit = (amount) => {
+    setPaymentLimit(parseFloat(paymentLimit) + amount);
+  }
+
+  const handlePayment = (code, value, type) => {
+    setPayments([
+      ...payments,
+      { code: code, value: value, type: type, id: payments.length + 1, timestamp: new Date()},
+    ]);
+    setPaymentLimit(paymentLimit - parseFloat(value));
+    console.log(payments);
+  }
+
+  const increaseTransferLimit = (amount) => {
+    setTransferLimit(parseFloat(paymentLimit) + amount);
+  }
+
+  const handleTransfer = (recipient, value) => {
+    setTransfers([
+      ...transfers,
+      { recipient: recipient, value: value, id: transfers.length + 1, timestamp: new Date()},
+    ]);
+    setTransferLimit(transferLimit - parseFloat(value));
+    console.log(transfers);
+  }
+
   const value = {
     users,
     currentUser,
@@ -68,12 +110,27 @@ export const AppProvider = ({ children }) => {
     balance,
     transactions,
     loginMessage,
+    balanceBTC,
+    balanceETH,
+    balanceUSDC,
+    loanLocked,
+    loanAvailable,
+    paymentLimit,
+    transferLimit,
+    loanDebit,
     handleDeposit,
     handleWithdraw,
     changeAuth,
     addUser,
     logUser,
-    validateNumber
+    validateNumber,
+    handleUnlockLoan,
+    setLoanAvailable,
+    setLoanDebit,
+    increasePaymentLimit,
+    handlePayment,
+    increaseTransferLimit,
+    handleTransfer,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

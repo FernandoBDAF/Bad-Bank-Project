@@ -1,9 +1,8 @@
 import { useContext } from "react";
 import { AppContext } from "../utils/Context";
-import Layout from "../layout/Layout";
 
 export default function Transactions() {
-    const { balance, transactions } = useContext(AppContext);
+    const { balance, transactions, loanDebit } = useContext(AppContext);
 
     const bgColor = function (type) {
         if (type === "Deposit") {
@@ -15,7 +14,7 @@ export default function Transactions() {
     
     return (
             <div className="container">
-            <h1>Transactions - <span>${balance}</span></h1>
+            <h1>Transactions - <span>${balance}</span> | Debt -  <span>${loanDebit}</span></h1>
             <table className="table table-striped">
                 <thead>
                 <tr>

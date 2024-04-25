@@ -3,11 +3,92 @@ import { useState, useContext } from "react";
 import { AppContext } from "../utils/Context";
 import FinancialOperations from "../components/OperationsCard";
 
-export default function Loans() {
+export default function Payments() {
   const [amount, setAmount] = useState("");
-  const { balance } = useContext(AppContext);
-  function takeLoan() {
-    alert("Loan of " + amount + " taken");
+  const [paymentCode, setPaymentCode] = useState("");
+  const [paymentValue, setPaymentValue] = useState("");
+  const [paymentType, setPaymentType] = useState(1);
+  const {
+    balance,
+    paymentLimit,
+    paymentAvailable,
+    validateNumber,
+    increasePaymentLimit,
+    handlePayment,
+    handleWithdraw,
+  } = useContext(AppContext);
+
+  function handleLimitChange(e) {
+    if (!validateNumber) {
+      alert("Please enter a valid number");
+      return;
+    }
+    setAmount(e.target.value);
+  }
+
+  function handleIncreaseLimit() {
+    if (!validateNumber(amount)) {
+      alert("Please enter a valid number");
+      return;
+    }
+    if (parseFloat(amount) <= 0) {
+      alert("Please enter a positive number");
+      return;
+    }
+    increasePaymentLimit(parseFloat(amount));
+    setAmount("");
+    alert("Payment limit updated!");
+  }
+
+  const handlePCodeChange = (e) => {
+    if (paymentCode.length >= 16) {
+      alert("The code max size is 16-digit. Please try again.");
+      return;
+    }
+    setPaymentCode(e.target.value);
+  };
+
+  const handlePValueChange = (e) => {
+    if (!validateNumber(e.target.value)) {
+      alert("Please enter a valid number");
+      return;
+    }
+    setPaymentValue(e.target.value);
+  };
+
+  const handlePTypeChange = (e) => {
+    setPaymentType(e.target.value);
+  };
+
+  const handlePaymentClick = () => {
+    if (paymentCode.length !== 16) {
+      alert("Please enter a 16-digit code");
+      return;
+    }
+    if (!validateNumber(paymentValue)) {
+      alert("Please enter a valid number");
+      return;
+    }
+    if (parseFloat(paymentValue) <= 0) {
+      alert("Please enter a positive number");
+      return;
+    }
+    if (parseFloat(paymentValue) > paymentLimit) {
+      alert("The payment value exceeds the limit");
+      return;
+    }
+    if (parseFloat(paymentValue) > balance) {
+      alert("Insufficient funds");
+      return;
+    }
+    
+    handlePayment(paymentCode, paymentValue, paymentType);
+    handleWithdraw(parseFloat(paymentValue));
+
+    alert("Payment completed!");
+    setPaymentCode("");
+    setPaymentValue("");
+    setPaymentType(1);
   }
 
   return (
@@ -22,52 +103,91 @@ export default function Loans() {
                 <div className="d-flex flex-column gap-4">
                   <div className="col-md-12 d-flex">
                     <div className="d-flex flex-column gap-4">
-                        <div>
-                            <h6>Daily Limit: $1000</h6>
-                            <h6>Available limit: $0</h6>
-                        </div>
-                            
-                        <div>
-                            <label htmlFor="loanAmount" className="form-label">
-                                Change your payment limit
-                            </label>
-                            <input
-                                type="number"
-                                className="form-control"
-                                id="limitAmount"
-                                placeholder="New value"
-                                value={amount}
-                                onChange={e => setAmount(e.target.value)}
-                            />
-                        </div>
+                      <div>
+                        <h6>Daily Limit: ${paymentLimit}</h6>
+                      </div>
+
+                      <div>
+                        <label htmlFor="loanAmount" className="form-label">
+                          Change your limit
+                        </label>
+                        <input
+                          type="number"
+                          className="form-control"
+                          id="limitAmount"
+                          placeholder="New value"
+                          value={amount}
+                          onChange={handleLimitChange}
+                        />
+                      </div>
                     </div>
 
                     <div className="align-self-end">
-                        <button
+                      <button
                         type="submit"
                         className="btn btn-primary"
-                        onClick={takeLoan}
-                        >
-                            Confirm
-                        </button>
+                        onClick={handleIncreaseLimit}
+                      >
+                        Confirm
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="col-md-12 d-flex">
+                    <div className="d-flex flex-column gap-4">
+                      <div className="d-flex flex-column gap-2">
+                        <label htmlFor="loanAmount" className="form-label">
+                          Pay now
+                        </label>
+
+                        <input
+                          type="input"
+                          className="form-control"
+                          id="limitAmount"
+                          placeholder="16-digit code"
+                          value={paymentCode}
+                          onChange={handlePCodeChange}
+                        />
+
+                        <input
+                          type="number"
+                          className="form-control"
+                          id="limitAmount"
+                          placeholder="Value"
+                          value={paymentValue}
+                          onChange={handlePValueChange}
+                        />
+
+                        <div className="d-flex">
+                          <select
+                            className="form-select"
+                            id="paymentTerm"
+                            onChange={handlePTypeChange}
+                            value={paymentType}
+                          >
+                            <option value="1">Electricity</option>
+                            <option value="2">Water</option>
+                            <option value="3">Internet</option>
+                            <option value="4">Phone</option>
+                            <option value="5">Credit Card</option>
+                            <option value="6">Insurance</option>
+                            <option value="7">Other</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="align-self-end">
+                      <button
+                        type="submit"
+                        className="btn btn-primary"
+                        onClick={handlePaymentClick}
+                      >
+                        Pay
+                      </button>
                     </div>
                   </div>
                 </div>
-
-                  {/* <div className="col-md-6 mb-3">
-                    <label htmlFor="paymentTerm" className="form-label">
-                      Bill Type
-                    </label>
-                    <select className="form-select" id="paymentTerm">
-                        <option value="1">Electricity</option>
-                        <option value="2">Water</option>
-                        <option value="3">Internet</option>
-                        <option value="4">Phone</option>
-                        <option value="5">Credit Card</option>
-                        <option value="6">Insurance</option>
-                        <option value="7">Other</option>
-                    </select>
-                  </div> */}
               </>
             }
           />

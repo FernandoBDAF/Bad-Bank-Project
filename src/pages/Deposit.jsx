@@ -6,16 +6,17 @@ import FinancialOperations from "../components/OperationsCard";
 
 export default function Deposit() {
   const [deposit, setDeposit] = React.useState("");
-  const { handleDeposit, authenticated, balance, validateNumber } =
+  const { handleDeposit, authenticated, validateNumber } =
     useContext(AppContext);
 
   function onDepositClick() {
-    if (validateNumber(deposit)) {
+    if (!validateNumber(deposit)) {
       alert("Please enter a valid number");
       return;
     }
     handleDeposit(deposit);
     setDeposit("");
+    alert("Deposit successful!");
   }
 
   function onDepositChange(e) {

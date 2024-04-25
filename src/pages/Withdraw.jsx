@@ -12,6 +12,7 @@ export default function Withdraw() {
   function onWithdrawClick() {
     handleWithdraw(withdraw);
     setWithdraw("");
+    alert("Withdrawal successful!");
   }
 
   if (!authenticated) {
