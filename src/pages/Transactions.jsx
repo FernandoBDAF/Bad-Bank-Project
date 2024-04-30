@@ -1,8 +1,10 @@
-import { useContext } from "react";
+"use client"
+
+import { useContext, useEffect } from "react";
 import { AppContext } from "../utils/Context";
 
 export default function Transactions() {
-    const { balance, transactions, loanDebit } = useContext(AppContext);
+    const { balance, transactions, loanDebit, payments, transfers, cryptoTransactions } = useContext(AppContext);
 
     const bgColor = function (type) {
         if (type === "Deposit") {
@@ -11,6 +13,13 @@ export default function Transactions() {
         return "#EBC2BC";
         }
     }
+
+    useEffect(() => {
+        console.log(transactions)
+        console.log(payments)
+        console.log(transfers)
+        console.log(cryptoTransactions)
+    }, [])
     
     return (
             <div className="container">

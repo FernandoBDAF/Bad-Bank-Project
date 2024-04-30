@@ -1,7 +1,7 @@
 import Card from "../components/Card";
 import { useState, useContext } from "react";
 import { AppContext } from "../utils/Context";
-import FinancialOperations from "../components/OperationsCard";
+import BalanceCard from "../components/BalanceCard";
 
 export default function Payments() {
   const [amount, setAmount] = useState("");
@@ -11,7 +11,6 @@ export default function Payments() {
   const {
     balance,
     paymentLimit,
-    paymentAvailable,
     validateNumber,
     increasePaymentLimit,
     handlePayment,
@@ -193,7 +192,7 @@ export default function Payments() {
           />
         </div>
         <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
-          <FinancialOperations />
+          <BalanceCard />
         </div>
       </div>
     </div>

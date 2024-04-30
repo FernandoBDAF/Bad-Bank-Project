@@ -16,7 +16,6 @@ import Footer from './layout/footer/Footer';
 import Loans from './pages/Loans';
 import Payments from './pages/Payments';
 import TransferMoney from './pages/TransferMoney';
-import Investments from './pages/Investments';
 import TradeCrypto from './pages/TradeCrypto';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -38,7 +37,6 @@ root.render(
             <Route path="/loans" element={<Loans />} />
             <Route path="/payments" element={<Payments />} />
             <Route path="/transfer-money" element={<TransferMoney />} />
-            <Route path="/investments" element={<Investments />} />
             <Route path="/transactions" element={<Transactions />} />
           </Routes>
         </div>

@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Card from "../components/Card";
 import { AppContext } from "../utils/Context";
 import { Navigate } from "react-router-dom";
-import FinancialOperations from "../components/OperationsCard";
+import BalanceCard from "../components/BalanceCard";
 
 export default function Deposit() {
-  const [deposit, setDeposit] = React.useState("");
+  const [deposit, setDeposit] = useState("");
   const { handleDeposit, authenticated, validateNumber } =
     useContext(AppContext);
 
@@ -70,7 +70,7 @@ export default function Deposit() {
           />
         </div>
         <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
-          <FinancialOperations />
+          <BalanceCard />
         </div>
       </div>
     </div>

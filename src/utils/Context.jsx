@@ -1,5 +1,6 @@
+"use client"
+
 import React, { useState, createContext, useContext } from "react";
-import { Navigate } from "react-router-dom";
 
 export const AppContext = createContext(null);
 
@@ -21,6 +22,7 @@ export const AppProvider = ({ children }) => {
   const [payments, setPayments] = useState([]);
   const [transferLimit, setTransferLimit] = useState(1000);
   const [transfers, setTransfers] = useState([]);
+  const [cryptoTransactions, setCryptoTransactions] = useState([]);
 
   const handleDeposit = (amount) => {
     setBalance(balance + parseFloat(amount));
@@ -103,6 +105,37 @@ export const AppProvider = ({ children }) => {
     console.log(transfers);
   }
 
+  const handleCryptoBuy = (coin, rate, fee, value, total) => {
+    handleWithdraw(total);
+    if (coin === "btc") {
+      setBalanceBTC(balanceBTC + parseFloat(value));
+    } else if (coin === "eth") {
+      setBalanceETH(balanceETH + parseFloat(value));
+    } else if (coin === "usdc") {
+      setBalanceUSDC(balanceUSDC + parseFloat(value));
+    }
+    setCryptoTransactions([
+      ...cryptoTransactions,
+      { type: "Buy", coin: coin, rate: rate, fee: fee, value: value, total: total, id: transactions.length + 1, timestamp: new Date()},
+    ]);
+  }
+
+  const handleCryptoSell = (coin, rate, fee, value, total) => {
+    handleDeposit(total);
+    if (coin === "btc") {
+      setBalanceBTC(balanceBTC - parseFloat(value));
+    } else if (coin === "eth") {
+      setBalanceETH(balanceETH - parseFloat(value));
+    } else if (coin === "usdc") {
+      setBalanceUSDC(balanceUSDC - parseFloat(value));
+    }
+    setCryptoTransactions([
+      ...cryptoTransactions,
+      { type: "Sell", coin: coin, value: value, id: transactions.length + 1, timestamp: new Date()},
+    ]);
+  }
+
+
   const value = {
     users,
     currentUser,
@@ -118,6 +151,9 @@ export const AppProvider = ({ children }) => {
     paymentLimit,
     transferLimit,
     loanDebit,
+    balanceBTC,
+    balanceETH,
+    balanceUSDC,
     handleDeposit,
     handleWithdraw,
     changeAuth,
@@ -131,6 +167,8 @@ export const AppProvider = ({ children }) => {
     handlePayment,
     increaseTransferLimit,
     handleTransfer,
+    handleCryptoBuy,
+    handleCryptoSell,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

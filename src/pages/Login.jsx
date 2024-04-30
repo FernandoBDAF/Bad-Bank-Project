@@ -1,7 +1,6 @@
 import Card from "../components/Card";
 import React, { useContext } from "react";
 import { AppContext } from "../utils/Context";
-import Layout from "../layout/Layout";
 import { Link, Navigate } from "react-router-dom";
 
 function Login() {
