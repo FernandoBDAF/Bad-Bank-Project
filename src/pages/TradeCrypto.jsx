@@ -100,7 +100,7 @@ export default function TradeCrypto() {
         <div className="row flex-wrap align-items-center justify-content-center">
             <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
             <div className="bg-secondary border flex-wrap p-2">
-            <div className="d-flex flex-wrap gap-1 mx-3 justify-content-start">
+            <div className="d-flex flex-wrap gap-3 mx-3 justify-content-start">
                 <CryptoCard
                 name="Bitcoin"
                 value={btc}

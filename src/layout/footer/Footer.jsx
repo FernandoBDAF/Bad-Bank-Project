@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="col-md-12 text-center">
             <h5 className="text-uppercase">BadBank</h5>
             <p>
-              Providing reliable banking transactions for over a decade. Learn more about how we work and our commitment to customer service.
+              Providing reliable banking services for over a decade. The bank you can trust to protect your finances and cryptocurrencies.
             </p>
           </div>
         </div>
