@@ -10,7 +10,7 @@ import Login from './pages/Login';
 import Deposit from './pages/Deposit';
 import Withdraw from './pages/Withdraw';
 import Home from './pages/Home';
-import Transactions from './pages/Transactions';
+import AllData from './pages/AllData';
 import NavBar from './layout/navbar/NavBar';
 import Footer from './layout/footer/Footer';
 import Loans from './pages/Loans';
@@ -37,7 +37,7 @@ root.render(
             <Route path="/loans" element={<Loans />} />
             <Route path="/payments" element={<Payments />} />
             <Route path="/transfer-money" element={<TransferMoney />} />
-            <Route path="/transactions" element={<Transactions />} />
+            <Route path="/all-data" element={<AllData />} />
           </Routes>
         </div>
         <Footer />

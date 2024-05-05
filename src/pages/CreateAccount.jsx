@@ -2,45 +2,51 @@ import Card from "../components/Card";
 import React, { useContext } from "react";
 import { AppContext } from "../utils/Context";
 import { Link, Navigate } from "react-router-dom";
-import Layout from "../layout/Layout";
 
 function CreateAccount() {
   const [show, setShow] = React.useState(true);
-  const [status, setStatus] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [name, setName] = React.useState("");
   const { addUser, authenticated } = useContext(AppContext);
 
-  function validate(field, label) {
-    if (!field) {
-      setStatus("Error: " + label);
-      setTimeout(() => setStatus(""), 3000);
+  function validate(field) {
+    if (field.length < 8) {
+      return false
+    }
+    if (field === "") {
       return false;
     }
     return true;
   }
 
   function createAccount() {
-    console.log(name, email, password);
-    if (!validate(name, "name")) return;
-    if (!validate(email, "email")) return;
-    if (!validate(password, "password")) return;
-    addUser({ name, email, password, balance: 100 });
+    let errorMsg = ""
+    errorMsg += name !== "" ? "" : "You have to inser your name!\n"
+    errorMsg += email !== "" ? "" : "You have to inser your email!\n"
+    errorMsg += password.length < 8 ? "You password has to be at least 8 characters long!\n" : ""
+    if (errorMsg !== "") {
+      alert(errorMsg);
+      return
+    }
+    addUser({ name, email, password, balance: 0 });
     setShow(false);
   }
 
-  if (authenticated) {
-    return <Navigate to="/" />;
+  function createAnotherAccount () {
+    setShow(true);
+    setName("");
+    setEmail("");
+    setPassword("");
   }
 
   return (
-    <>
+    <div className="d-flex flex-column align-items-center justify-content-between">
       <h5>Welcome to Bad Bank!</h5>
       <Card
         bgcolor="primary"
         header="Create Account"
-        status={status}
+        status={""}
         body={
           show ? (
             <>
@@ -81,26 +87,30 @@ function CreateAccount() {
                 type="submit"
                 className="btn btn-light"
                 onClick={createAccount}
+                disabled={name === "" && email === "" && password === ""}
               >
                 Create Account
               </button>
             </>
           ) : (
-            <>
-              <h5>Success</h5>
+            <div className="d-flex flex-column gap-2">
+              <h5>Success!!</h5>
+              <p>Your account has been created successfully</p>
               <Link to="/log-in" className="btn btn-light">
                 Go to login
               </Link>
-            </>
+              <button
+                type="submit"
+                className="btn btn-light"
+                onClick={createAnotherAccount}
+              >
+                Create Another Account
+              </button>
+            </div>
           )
         }
       />
-      <p>
-        The Bad Bank app allow you to input all your transactions and keep track
-        of your income and expenses. Create your account now so you can control
-        your financial transactions
-      </p>
-    </>
+    </div>
   );
 }
 

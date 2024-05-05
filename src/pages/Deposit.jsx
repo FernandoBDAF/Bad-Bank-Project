@@ -3,6 +3,7 @@ import Card from "../components/Card";
 import { AppContext } from "../utils/Context";
 import { Navigate } from "react-router-dom";
 import BalanceCard from "../components/BalanceCard";
+import HorizontalBalanceCard from "../components/HorizontalBalanceCard";
 
 export default function Deposit() {
   const [deposit, setDeposit] = useState("");
@@ -33,7 +34,8 @@ export default function Deposit() {
 
   return (
     <div className="container mt-5">
-      <div className="row flex-wrap align-items-center justify-content-between">
+      <HorizontalBalanceCard />
+      <div className="row flex-wrap align-items-center justify-content-center">
         <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
           <Card
             bgcolor="success"
@@ -55,22 +57,19 @@ export default function Deposit() {
                     value={deposit}
                     onChange={onDepositChange}
                   />
-
                 </div>
 
                 <button
                   type="submit"
                   className="btn btn-light"
                   onClick={onDepositClick}
+                  disabled={deposit === ""}
                 >
                   Deposit
                 </button>
               </>
             }
           />
-        </div>
-        <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
-          <BalanceCard />
         </div>
       </div>
     </div>

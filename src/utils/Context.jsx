@@ -8,7 +8,7 @@ export const AppProvider = ({ children }) => {
   const [id, setId] = useState(1);
   const [users, setUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
-  const [authenticated, setAuthenticated] = useState(true);
+  const [authenticated, setAuthenticated] = useState(false);
   const [balance, setBalance] = useState(0);
   const [balanceBTC, setBalanceBTC] = useState(0);
   const [balanceETH, setBalanceETH] = useState(0);
@@ -33,6 +33,10 @@ export const AppProvider = ({ children }) => {
   };
 
   const handleWithdraw = (amount) => {
+    if (parseFloat(amount) > balance) {
+      alert("You don't have enough balance to withdraw this amount");
+      return;
+    }
     setBalance(balance - parseFloat(amount));
     setTransactions([
       ...transactions,

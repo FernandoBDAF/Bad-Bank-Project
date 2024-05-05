@@ -1,58 +1,155 @@
-import React, {useContext} from 'react';
-import {AppContext} from '../../utils/Context';
-import {Link} from 'react-router-dom';
+import React, { useContext } from "react";
+import { AppContext } from "../../utils/Context";
+import { NavLink } from "react-router-dom";
+import "./styles.css";
 
+export default function NavBar() {
+  const { authenticated } = useContext(AppContext);
 
-export default function NavBar () {
-  const {authenticated} = useContext(AppContext);
-
-    return (
-        <>
-          <nav className="navbar navbar-expand-lg navbar-light bg-light px-4">
-            <Link className="navbar-brand" to="/">BadBank</Link>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNav">
-              <ul className="navbar-nav">
-                {!authenticated && 
-                <>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/create-account">Create Account</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/log-in">Login</Link>
-                  </li>
-                </>
-                }
-                {authenticated &&
-                <>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/deposit">Deposit</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/withdraw">Withdraw</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/loans">Loans</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/payments">Payments</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/transfer-money">Transfer</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/trade-crypto">Crypto</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/transactions">Transactions</Link>
-                  </li>
-                </>
-                }
-              </ul>
-            </div>
-          </nav>
+  return (
+    <>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light px-4">
+        <NavLink
+          className="navbar-brand icon-link icon-link-hover "
+          style={{ "--bs-link-hover-color-rgb": "25, 135, 84" }}
+          to="/"
+        >
+          BadBank
+        </NavLink>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav nav-pills">
+            {!authenticated && (
+              <>
+                <li className="nav-item menuButton">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav-link  active text-white" : "nav-link hoverEffect"
+                    }
+                    to="/create-account"
+                  >
+                    Create Account
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav-link active text-white" : "nav-link hoverEffect"
+                    }
+                    to="/log-in"
+                  >
+                    Login
+                  </NavLink>
+                </li>
+              </>
+            )}
+            {authenticated && (
+              <>
+                <li className="nav-item">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav-link active text-white" : "nav-link hoverEffect"
+                    }
+                    to="/"
+                  >
+                    Home
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav-link active text-white" : "nav-link hoverEffect"
+                    }
+                    to="/deposit"
+                  >
+                    Deposit
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav-link active text-white" : "nav-link hoverEffect"
+                    }
+                    to="/withdraw"
+                  >
+                    Withdraw
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav-link active text-white" : "nav-link hoverEffect"
+                    }
+                    to="/loans"
+                  >
+                    Loans
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav-link active text-white" : "nav-link hoverEffect"
+                    }
+                    to="/payments"
+                  >
+                    Payments
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav-link active text-white" : "nav-link hoverEffect"
+                    }
+                    to="/transfer-money"
+                  >
+                    Transfer
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav-link active text-white" : "nav-link hoverEffect"
+                    }
+                    to="/trade-crypto"
+                  >
+                    Crypto
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav-link active text-white" : "nav-link hoverEffect"
+                    }
+                    to="/all-data"
+                  >
+                    AllData
+                  </NavLink>
+                </li>
+                <li className="nav-item menuButton">
+                  <NavLink
+                    className={({ isActive }) =>
+                    isActive ? "nav-link active text-white" : "nav-link hoverEffect"
+                    }
+                    to="/create-account"
+                  >
+                    Create Account
+                  </NavLink>
+                </li>
+              </>
+            )}
+          </ul>
+        </div>
+      </nav>
     </>
-    )
+  );
 }

@@ -1,20 +1,14 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../utils/Context";
 
-export default function BalanceCard() {
+export default function HorizontalBalanceCard() {
   const { balance, balanceBTC, balanceETH, balanceUSDC, loanDebit } =
     useContext(AppContext);
 
   return (
     <div className="container mt-5">
       <table className="table table-dark table-hover">
-        <thead>
-          <tr>
-            <th>Currency</th>
-            <th>Balance</th>
-          </tr>
-        </thead>
-        <tbody>
+        <tbody className="d-flex gap-2 justify-content-center">
           <tr>
             <td>
               <img

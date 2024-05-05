@@ -2,6 +2,8 @@ import Card from "../components/Card";
 import { useState, useContext } from "react";
 import { AppContext } from "../utils/Context";
 import BalanceCard from "../components/BalanceCard";
+import { Navigate } from "react-router-dom";
+import HorizontalBalanceCard from "../components/HorizontalBalanceCard";
 
 export default function Payments() {
   const [amount, setAmount] = useState("");
@@ -15,6 +17,7 @@ export default function Payments() {
     increasePaymentLimit,
     handlePayment,
     handleWithdraw,
+    authenticated,
   } = useContext(AppContext);
 
   function handleLimitChange(e) {
@@ -80,7 +83,7 @@ export default function Payments() {
       alert("Insufficient funds");
       return;
     }
-    
+
     handlePayment(paymentCode, paymentValue, paymentType);
     handleWithdraw(parseFloat(paymentValue));
 
@@ -88,20 +91,25 @@ export default function Payments() {
     setPaymentCode("");
     setPaymentValue("");
     setPaymentType(1);
+  };
+
+  if (!authenticated) {
+    return <Navigate to="/log-in" />;
   }
 
   return (
-    <div className="container mt-5">
-      <div className="row flex-wrap align-items-center justify-content-between">
+    <div className="container mt-2">
+      <HorizontalBalanceCard />
+      <div className="row flex-wrap align-items-center justify-content-center">
         <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
           <Card
             bgcolor="info"
             header="PAY BILLS"
             body={
               <>
-                <div className="d-flex flex-column gap-4">
+                <div className="d-flex flex-column gap-1">
                   <div className="col-md-12 d-flex">
-                    <div className="d-flex flex-column gap-4">
+                    <div className="d-flex flex-column gap-1">
                       <div>
                         <h6>Daily Limit: ${paymentLimit}</h6>
                       </div>
@@ -132,9 +140,9 @@ export default function Payments() {
                     </div>
                   </div>
 
-                  <div className="col-md-12 d-flex">
-                    <div className="d-flex flex-column gap-4">
-                      <div className="d-flex flex-column gap-2">
+                  <div className="col-md-12 d-flex gap-2">
+                    <div className="d-flex flex-column">
+                      <div className="d-flex flex-column gap-1">
                         <label htmlFor="loanAmount" className="form-label">
                           Pay now
                         </label>
@@ -190,9 +198,6 @@ export default function Payments() {
               </>
             }
           />
-        </div>
-        <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
-          <BalanceCard />
         </div>
       </div>
     </div>

@@ -21,7 +21,6 @@ function Login() {
   }
 
   function handleLogin() {
-    console.log(email, password);
     if (!validate(email, "email")) return;
     if (!validate(password, "password")) return;
     logUser({ email, password });
@@ -39,7 +38,7 @@ function Login() {
   }
 
   return (
-    <>
+    <div className="d-flex flex-column align-items-center justify-content-between">
       <h5>Welcome to Bad Bank!</h5>
       <Card
         bgcolor="primary"
@@ -107,7 +106,7 @@ function Login() {
             {!authenticated && (
               <>
                 <hr style={{ height: "5px", backgroundColor: "white" }} />
-                <p className="mt-3">Do not have an account?</p>
+                <p className="mt-3">Do not have an account yet?</p>
                 <Link to="/create-account" className="btn btn-light">
                   Create your account
                 </Link>
@@ -121,7 +120,7 @@ function Login() {
         of your income and expenses. Create your account now so you can control
         your financial transactions
       </p>
-    </>
+    </div>
   );
 }
 

@@ -2,6 +2,8 @@ import Card from "../components/Card";
 import { useState, useContext } from "react";
 import { AppContext } from "../utils/Context";
 import BalanceCard from "../components/BalanceCard";
+import { Navigate } from "react-router-dom";
+import HorizontalBalanceCard from "../components/HorizontalBalanceCard";
 
 export default function Loans() {
   const [amount, setAmount] = useState("");
@@ -15,6 +17,7 @@ export default function Loans() {
     loanDebit,
     setLoanDebit,
     handleDeposit,
+    authenticated,
   } = useContext(AppContext);
 
   function handleLoanChange(e) {
@@ -39,6 +42,8 @@ export default function Loans() {
     setLoanDebit(parseFloat(loanDebit + loan));
     setLoanAvailable(loanAvailable - parseFloat(amount));
     handleDeposit(amount);
+    setAmount("");
+    setLoanTerm(1);
     alert(
       `You will have to pay $${(loan / loanTerm).toFixed(
         2
@@ -46,9 +51,14 @@ export default function Loans() {
     );
   }
 
+  if (!authenticated) {
+    return <Navigate to="/log-in" />;
+  }
+
   return (
     <div className="container mt-5">
-      <div className="row flex-wrap align-items-center justify-content-between">
+      <HorizontalBalanceCard />
+      <div className="row flex-wrap align-items-center justify-content-center">
         <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
           <Card
             bgcolor="info"
@@ -98,6 +108,7 @@ export default function Loans() {
                         className="form-select"
                         id="paymentTerm"
                         onChange={(e) => setLoanTerm(e.target.value)}
+                        value={loanTerm}
                       >
                         <option value="1">1 month</option>
                         <option value="2">2 months</option>
@@ -128,9 +139,6 @@ export default function Loans() {
               </>
             }
           />
-        </div>
-        <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
-          <BalanceCard />
         </div>
       </div>
     </div>

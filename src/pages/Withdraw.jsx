@@ -3,10 +3,12 @@ import Card from "../components/Card";
 import { AppContext } from "../utils/Context";
 import { Navigate } from "react-router-dom";
 import BalanceCard from "../components/BalanceCard";
+import HorizontalBalanceCard from "../components/HorizontalBalanceCard";
 
 export default function Withdraw() {
   const [withdraw, setWithdraw] = React.useState("");
-  const { handleWithdraw, authenticated, balance, validateNumber } = useContext(AppContext);
+  const { handleWithdraw, authenticated, balance, validateNumber } =
+    useContext(AppContext);
 
   function onWithdrawClick() {
     handleWithdraw(withdraw);
@@ -26,9 +28,14 @@ export default function Withdraw() {
     setWithdraw(e.target.value);
   }
 
+  if (!authenticated) {
+    return <Navigate to="/log-in" />;
+  }
+
   return (
     <div className="container mt-5">
-      <div className="row flex-wrap align-items-center justify-content-between">
+      <HorizontalBalanceCard />
+      <div className="row flex-wrap align-items-center justify-content-center">
         <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
           <Card
             bgcolor="danger"
@@ -50,22 +57,19 @@ export default function Withdraw() {
                     value={withdraw}
                     onChange={onWithdrawChange}
                   />
-
                 </div>
 
                 <button
                   type="submit"
                   className="btn btn-light"
                   onClick={onWithdrawClick}
+                  disabled={withdraw === ""}
                 >
                   Withdraw
                 </button>
               </>
             }
           />
-        </div>
-        <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
-          <BalanceCard />
         </div>
       </div>
     </div>

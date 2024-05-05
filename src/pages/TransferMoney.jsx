@@ -2,6 +2,8 @@ import Card from "../components/Card";
 import { useState, useContext } from "react";
 import { AppContext } from "../utils/Context";
 import BalanceCard from "../components/BalanceCard";
+import { Navigate } from "react-router-dom";
+import HorizontalBalanceCard from "../components/HorizontalBalanceCard";
 
 export default function Transfer() {
   const [amount, setAmount] = useState("");
@@ -14,6 +16,7 @@ export default function Transfer() {
     increaseTransferLimit,
     handleTransfer,
     handleWithdraw,
+    authenticated,
   } = useContext(AppContext);
 
   function handleLimitChange(e) {
@@ -67,18 +70,23 @@ export default function Transfer() {
       alert("Insufficient funds");
       return;
     }
-    
+
     handleTransfer(transferRecipient, parseFloat(transferValue));
     handleWithdraw(parseFloat(transferValue));
 
     alert("Payment completed!");
     setTransferRecipient("");
     setTransferValue("");
+  };
+
+  if (!authenticated) {
+    return <Navigate to="/log-in" />;
   }
 
   return (
     <div className="container mt-5">
-      <div className="row flex-wrap align-items-center justify-content-between">
+      <HorizontalBalanceCard />
+      <div className="row flex-wrap align-items-center justify-content-center">
         <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
           <Card
             bgcolor="info"
@@ -159,9 +167,6 @@ export default function Transfer() {
               </>
             }
           />
-        </div>
-        <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
-          <BalanceCard />
         </div>
       </div>
     </div>
