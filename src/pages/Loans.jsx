@@ -1,7 +1,6 @@
 import Card from "../components/Card";
 import { useState, useContext } from "react";
 import { AppContext } from "../utils/Context";
-import BalanceCard from "../components/BalanceCard";
 import { Navigate } from "react-router-dom";
 import HorizontalBalanceCard from "../components/HorizontalBalanceCard";
 
@@ -35,7 +34,9 @@ export default function Loans() {
     }
     if (amount > loanAvailable) {
       if (amount <= loanLocked) {
-        alert(`You have ${loanLocked} available, but you need to UNLOCK YOUR LIMIT FIRST.`);
+        alert(
+          `You have ${loanLocked} available, but you need to UNLOCK YOUR LIMIT FIRST.`
+        );
         return;
       }
       alert("You don't have enough available limit");

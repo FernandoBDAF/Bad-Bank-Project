@@ -23,7 +23,9 @@ export default function NavBar() {
                 <li className="nav-item menuButton">
                   <NavLink
                     className={({ isActive }) =>
-                      isActive ? "nav-link  active text-white" : "nav-link hoverEffect"
+                      isActive
+                        ? "nav-link  active text-white"
+                        : "nav-link hoverEffect"
                     }
                     to="/create-account"
                   >
@@ -33,7 +35,9 @@ export default function NavBar() {
                 <li className="nav-item">
                   <NavLink
                     className={({ isActive }) =>
-                      isActive ? "nav-link active text-white" : "nav-link hoverEffect"
+                      isActive
+                        ? "nav-link active text-white"
+                        : "nav-link hoverEffect"
                     }
                     to="/log-in"
                   >
@@ -47,7 +51,9 @@ export default function NavBar() {
                 <li className="nav-item">
                   <NavLink
                     className={({ isActive }) =>
-                      isActive ? "nav-link active text-white" : "nav-link hoverEffect"
+                      isActive
+                        ? "nav-link active text-white"
+                        : "nav-link hoverEffect"
                     }
                     to="/"
                   >
@@ -57,7 +63,9 @@ export default function NavBar() {
                 <li className="nav-item">
                   <NavLink
                     className={({ isActive }) =>
-                      isActive ? "nav-link active text-white" : "nav-link hoverEffect"
+                      isActive
+                        ? "nav-link active text-white"
+                        : "nav-link hoverEffect"
                     }
                     to="/deposit"
                   >
@@ -67,7 +75,9 @@ export default function NavBar() {
                 <li className="nav-item">
                   <NavLink
                     className={({ isActive }) =>
-                      isActive ? "nav-link active text-white" : "nav-link hoverEffect"
+                      isActive
+                        ? "nav-link active text-white"
+                        : "nav-link hoverEffect"
                     }
                     to="/withdraw"
                   >
@@ -77,7 +87,9 @@ export default function NavBar() {
                 <li className="nav-item">
                   <NavLink
                     className={({ isActive }) =>
-                      isActive ? "nav-link active text-white" : "nav-link hoverEffect"
+                      isActive
+                        ? "nav-link active text-white"
+                        : "nav-link hoverEffect"
                     }
                     to="/loans"
                   >
@@ -87,7 +99,9 @@ export default function NavBar() {
                 <li className="nav-item">
                   <NavLink
                     className={({ isActive }) =>
-                      isActive ? "nav-link active text-white" : "nav-link hoverEffect"
+                      isActive
+                        ? "nav-link active text-white"
+                        : "nav-link hoverEffect"
                     }
                     to="/payments"
                   >
@@ -97,7 +111,9 @@ export default function NavBar() {
                 <li className="nav-item">
                   <NavLink
                     className={({ isActive }) =>
-                      isActive ? "nav-link active text-white" : "nav-link hoverEffect"
+                      isActive
+                        ? "nav-link active text-white"
+                        : "nav-link hoverEffect"
                     }
                     to="/transfer-money"
                   >
@@ -107,7 +123,9 @@ export default function NavBar() {
                 <li className="nav-item">
                   <NavLink
                     className={({ isActive }) =>
-                      isActive ? "nav-link active text-white" : "nav-link hoverEffect"
+                      isActive
+                        ? "nav-link active text-white"
+                        : "nav-link hoverEffect"
                     }
                     to="/trade-crypto"
                   >
@@ -117,7 +135,9 @@ export default function NavBar() {
                 <li className="nav-item">
                   <NavLink
                     className={({ isActive }) =>
-                      isActive ? "nav-link active text-white" : "nav-link hoverEffect"
+                      isActive
+                        ? "nav-link active text-white"
+                        : "nav-link hoverEffect"
                     }
                     to="/all-data"
                   >
@@ -127,7 +147,9 @@ export default function NavBar() {
                 <li className="nav-item menuButton">
                   <NavLink
                     className={({ isActive }) =>
-                    isActive ? "nav-link active text-white" : "nav-link hoverEffect"
+                      isActive
+                        ? "nav-link active text-white"
+                        : "nav-link hoverEffect"
                     }
                     to="/create-account"
                   >

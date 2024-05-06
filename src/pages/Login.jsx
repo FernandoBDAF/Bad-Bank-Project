@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { AppContext } from "../utils/Context";
 import { Link, Navigate } from "react-router-dom";
 
-function Login() {
+export default function Login() {
   const [submited, setSubmited] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -115,13 +115,6 @@ function Login() {
           </>
         }
       />
-      <p>
-        The Bad Bank app allow you to input all your transactions and keep track
-        of your income and expenses. Create your account now so you can control
-        your financial transactions
-      </p>
     </div>
   );
 }
-
-export default Login;

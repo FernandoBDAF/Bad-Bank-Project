@@ -1,20 +1,12 @@
 "use client";
 
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AppContext } from "../utils/Context";
 import { Navigate } from "react-router-dom";
 import HorizontalBalanceCard from "../components/HorizontalBalanceCard";
 
 export default function AllData() {
-  const {
-    balance,
-    transactions,
-    loanDebit,
-    payments,
-    transfers,
-    cryptoTransactions,
-    authenticated,
-  } = useContext(AppContext);
+  const { transactions, authenticated } = useContext(AppContext);
 
   const bgColor = function (type) {
     if (type === "Deposit") {

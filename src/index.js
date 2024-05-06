@@ -1,7 +1,6 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import './index.css';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AppProvider } from './utils/Context';
@@ -28,7 +27,7 @@ root.render(
         <NavBar />
         <div className="flex-grow-1">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/*" element={<Home />} />
             <Route path="/create-account" element={<CreateAccount />} />
             <Route path="/log-in" element={<Login />} />
             <Route path="/deposit" element={<Deposit />} />

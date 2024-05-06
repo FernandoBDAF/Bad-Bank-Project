@@ -1,4 +1,3 @@
-import BalanceCard from "../components/BalanceCard";
 import CryptoCard from "../components/CryptoCard";
 import { useEffect, useState, useContext } from "react";
 import { AppContext } from "../utils/Context";
@@ -6,14 +5,15 @@ import { Navigate } from "react-router-dom";
 import HorizontalBalanceCard from "../components/HorizontalBalanceCard";
 
 export default function TradeCrypto() {
-  const [btc, setBtc] = useState(67500);
-  const [eth, setEth] = useState(3475);
-  const [usdc, setUsdc] = useState(0.9985);
   const [operation, setOperation] = useState("buy");
   const [coin, setCoin] = useState("btc");
   const [value, setValue] = useState(0);
   const [rate, setRate] = useState(0);
   const [total, setTotal] = useState(0);
+
+  const btc = 67500;
+  const eth = 3475;
+  const usdc = 0.9985;
 
   const {
     handleCryptoBuy,

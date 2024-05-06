@@ -1,39 +1,32 @@
 import Card from "../components/Card";
 import React, { useContext } from "react";
 import { AppContext } from "../utils/Context";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function CreateAccount() {
+export default function CreateAccount() {
   const [show, setShow] = React.useState(true);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [name, setName] = React.useState("");
-  const { addUser, authenticated } = useContext(AppContext);
-
-  function validate(field) {
-    if (field.length < 8) {
-      return false
-    }
-    if (field === "") {
-      return false;
-    }
-    return true;
-  }
+  const { addUser } = useContext(AppContext);
 
   function createAccount() {
-    let errorMsg = ""
-    errorMsg += name !== "" ? "" : "You have to inser your name!\n"
-    errorMsg += email !== "" ? "" : "You have to inser your email!\n"
-    errorMsg += password.length < 8 ? "You password has to be at least 8 characters long!\n" : ""
+    let errorMsg = "";
+    errorMsg += name !== "" ? "" : "You have to insert your name!\n";
+    errorMsg += email !== "" ? "" : "You have to insert your email!\n";
+    errorMsg +=
+      password.length < 8
+        ? "You password has to be at least 8 characters long!\n"
+        : "";
     if (errorMsg !== "") {
       alert(errorMsg);
-      return
+      return;
     }
     addUser({ name, email, password, balance: 0 });
     setShow(false);
   }
 
-  function createAnotherAccount () {
+  function createAnotherAccount() {
     setShow(true);
     setName("");
     setEmail("");
@@ -113,5 +106,3 @@ function CreateAccount() {
     </div>
   );
 }
-
-export default CreateAccount;

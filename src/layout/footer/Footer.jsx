@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
 
 export default function Footer() {
   return (
@@ -9,13 +8,17 @@ export default function Footer() {
           <div className="col-md-12 text-center">
             <h5 className="text-uppercase">BadBank</h5>
             <p>
-              Providing reliable banking services for over a decade. The bank you can trust to protect your finances and cryptocurrencies.
+              Providing reliable banking services for over a decade. The bank
+              you can trust to protect your finances and cryptocurrencies.
             </p>
           </div>
         </div>
       </div>
 
-      <div className="text-center p-1" style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
+      <div
+        className="text-center p-1"
+        style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
+      >
         © {new Date().getFullYear()} BadBank, Inc.
       </div>
     </footer>

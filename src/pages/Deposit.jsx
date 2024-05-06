@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import Card from "../components/Card";
 import { AppContext } from "../utils/Context";
 import { Navigate } from "react-router-dom";
-import BalanceCard from "../components/BalanceCard";
 import HorizontalBalanceCard from "../components/HorizontalBalanceCard";
 
 export default function Deposit() {

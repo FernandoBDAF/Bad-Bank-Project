@@ -1,7 +1,6 @@
 import Card from "../components/Card";
 import { useState, useContext } from "react";
 import { AppContext } from "../utils/Context";
-import BalanceCard from "../components/BalanceCard";
 import { Navigate } from "react-router-dom";
 import HorizontalBalanceCard from "../components/HorizontalBalanceCard";
 
