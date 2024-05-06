@@ -21,7 +21,7 @@ export default function Payments() {
   } = useContext(AppContext);
 
   function handleLimitChange(e) {
-    if (!validateNumber) {
+    if (!validateNumber(e.target.value)) {
       alert("Please enter a valid number");
       return;
     }
@@ -76,6 +76,7 @@ export default function Payments() {
       return;
     }
     if (parseFloat(paymentValue) > paymentLimit) {
+      console.log(paymentValue, paymentLimit);
       alert("The payment value exceeds the limit");
       return;
     }
@@ -116,13 +117,13 @@ export default function Payments() {
 
                       <div>
                         <label htmlFor="loanAmount" className="form-label">
-                          Change your limit
+                          Increase your limit
                         </label>
                         <input
                           type="number"
                           className="form-control"
                           id="limitAmount"
-                          placeholder="New value"
+                          placeholder="Add amount"
                           value={amount}
                           onChange={handleLimitChange}
                         />

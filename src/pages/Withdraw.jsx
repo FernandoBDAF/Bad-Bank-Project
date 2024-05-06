@@ -2,18 +2,20 @@ import React, { useContext } from "react";
 import Card from "../components/Card";
 import { AppContext } from "../utils/Context";
 import { Navigate } from "react-router-dom";
-import BalanceCard from "../components/BalanceCard";
 import HorizontalBalanceCard from "../components/HorizontalBalanceCard";
 
 export default function Withdraw() {
   const [withdraw, setWithdraw] = React.useState("");
-  const { handleWithdraw, authenticated, balance, validateNumber } =
+  const { handleWithdraw, authenticated, validateNumber } =
     useContext(AppContext);
 
   function onWithdrawClick() {
+    if (withdraw === "" || withdraw <= 0) {
+      alert("Please enter positive value");
+      return;
+    }
     handleWithdraw(withdraw);
     setWithdraw("");
-    alert("Withdrawal successful!");
   }
 
   if (!authenticated) {
@@ -50,7 +52,7 @@ export default function Withdraw() {
                   </label>
 
                   <input
-                    type="input"
+                    type="number"
                     className="form-control"
                     id="deposit"
                     placeholder="Enter deposit amount"

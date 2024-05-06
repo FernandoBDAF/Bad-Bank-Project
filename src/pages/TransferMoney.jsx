@@ -1,7 +1,6 @@
 import Card from "../components/Card";
 import { useState, useContext } from "react";
 import { AppContext } from "../utils/Context";
-import BalanceCard from "../components/BalanceCard";
 import { Navigate } from "react-router-dom";
 import HorizontalBalanceCard from "../components/HorizontalBalanceCard";
 
@@ -13,14 +12,14 @@ export default function Transfer() {
     balance,
     transferLimit,
     validateNumber,
-    increaseTransferLimit,
     handleTransfer,
     handleWithdraw,
     authenticated,
+    setTransferLimit,
   } = useContext(AppContext);
 
   function handleLimitChange(e) {
-    if (!validateNumber) {
+    if (!validateNumber(e.target.value)) {
       alert("Please enter a valid number");
       return;
     }
@@ -28,15 +27,12 @@ export default function Transfer() {
   }
 
   function handleIncreaseLimit() {
-    if (!validateNumber(amount)) {
-      alert("Please enter a valid number");
-      return;
-    }
-    if (parseFloat(amount) <= 0) {
+    if (amount === "" || parseFloat(amount) <= 0) {
       alert("Please enter a positive number");
       return;
     }
-    increaseTransferLimit(parseFloat(amount));
+    setTransferLimit(parseFloat(amount));
+    setTransferLimit(parseFloat(amount) + transferLimit);
     setAmount("");
     alert("Transfer limit updated!");
   }
@@ -90,7 +86,7 @@ export default function Transfer() {
         <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
           <Card
             bgcolor="info"
-            header="PAY BILLS"
+            header="TRANSFER MONEY"
             body={
               <>
                 <div className="d-flex flex-column gap-4">

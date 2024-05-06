@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, createContext, useContext } from "react";
+import React, { useState, createContext } from "react";
 
 export const AppContext = createContext(null);
 
@@ -8,7 +8,7 @@ export const AppProvider = ({ children }) => {
   const [id, setId] = useState(1);
   const [users, setUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
-  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState(true);
   const [balance, setBalance] = useState(0);
   const [balanceBTC, setBalanceBTC] = useState(0);
   const [balanceETH, setBalanceETH] = useState(0);
@@ -35,13 +35,14 @@ export const AppProvider = ({ children }) => {
   const handleWithdraw = (amount) => {
     if (parseFloat(amount) > balance) {
       alert("You don't have enough balance to withdraw this amount");
-      return;
+      return false;
     }
     setBalance(balance - parseFloat(amount));
     setTransactions([
       ...transactions,
       { type: "Withdraw", amount: amount, id: transactions.length + 1, timestamp: new Date()},
     ]);
+    alert("Withdraw successful!");
   };
 
   const validateNumber = (number) => {
@@ -94,10 +95,6 @@ export const AppProvider = ({ children }) => {
     ]);
     setPaymentLimit(paymentLimit - parseFloat(value));
     console.log(payments);
-  }
-
-  const increaseTransferLimit = (amount) => {
-    setTransferLimit(parseFloat(paymentLimit) + amount);
   }
 
   const handleTransfer = (recipient, value) => {
@@ -155,9 +152,6 @@ export const AppProvider = ({ children }) => {
     paymentLimit,
     transferLimit,
     loanDebit,
-    balanceBTC,
-    balanceETH,
-    balanceUSDC,
     handleDeposit,
     handleWithdraw,
     changeAuth,
@@ -169,10 +163,10 @@ export const AppProvider = ({ children }) => {
     setLoanDebit,
     increasePaymentLimit,
     handlePayment,
-    increaseTransferLimit,
     handleTransfer,
     handleCryptoBuy,
     handleCryptoSell,
+    setTransferLimit,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

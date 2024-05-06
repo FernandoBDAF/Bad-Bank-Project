@@ -11,8 +11,8 @@ export default function Deposit() {
     useContext(AppContext);
 
   function onDepositClick() {
-    if (!validateNumber(deposit)) {
-      alert("Please enter a valid number");
+    if (deposit === "" || deposit <= 0) {
+      alert("Please enter positive value");
       return;
     }
     handleDeposit(deposit);
@@ -50,7 +50,7 @@ export default function Deposit() {
                   </label>
 
                   <input
-                    type="input"
+                    type="number"
                     className="form-control"
                     id="deposit"
                     placeholder="Enter deposit amount"

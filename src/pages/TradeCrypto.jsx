@@ -42,8 +42,12 @@ export default function TradeCrypto() {
       setTotal(0);
       return;
     }
+    if (operation === "sell") {
+        setTotal(parseFloat(value * rate - value * rate * 0.01));
+        return;
+    }
     setTotal(parseFloat(value * rate + value * rate * 0.01));
-  }, [value, rate]);
+  }, [value, rate, operation]);
 
   const handleConfirmationClick = () => {
     if (coin === "") {
@@ -51,7 +55,7 @@ export default function TradeCrypto() {
       return;
     }
     if (!value || value <= 0) {
-      alert("Please enter a valid value");
+      alert("Please enter a positive value");
       return;
     }
     if (operation === "buy") {

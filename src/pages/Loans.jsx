@@ -34,6 +34,10 @@ export default function Loans() {
       return;
     }
     if (amount > loanAvailable) {
+      if (amount <= loanLocked) {
+        alert(`You have ${loanLocked} available, but you need to UNLOCK YOUR LIMIT FIRST.`);
+        return;
+      }
       alert("You don't have enough available limit");
       return;
     }
